@@ -33,7 +33,7 @@ require_relative('models/property_tracker')
       # property2.delete()
       # property1.value = '£150,000'
       # property1.update
-
-      # binding.pry
+      p PropertyTracker.find_id(57)
+      binding.pry
 
       nil

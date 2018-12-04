@@ -69,6 +69,26 @@ attr_reader :id
       db.close()
     end
 
+    def PropertyTracker.find_address()
+      db = PG.connect({ dbname: 'property_tracker', host: 'localhost' })
+      sql = "SELECT address FROM properties WHERE address = $1"
+
+      db.prepare("find_address", sql)
+      db.exec_prepared("find_address")
+      db.close()
+    end
+
+    def PropertyTracker.find_id(id)
+      db = PG.connect({ dbname: 'property_tracker', host: 'localhost' })
+      sql = "SELECT * FROM properties WHERE id = $1"
+      values = [id]
+      db.prepare("find_id", sql)
+      db.exec_prepared("find_id", values)
+      db.close()
+    end
+
+
+
     def PropertyTracker.delete_all()
       db = PG.connect({ dbname: 'property_tracker', host: 'localhost' })
       sql = "DELETE FROM properties"
